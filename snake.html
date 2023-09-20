@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> The Snake Game</title>
+    </head>
+
+    <body>
+        <canvas id="gameCanvas" width = "300" height = "300"></canvas>
+        
+        <script>
+            /** CONSTANTS **/
+            const borderColor = 'black';
+            const backgroundColor = 'white';
+            const snakeColor = 'lightgreen';
+            const snakeBorderColor = 'darkgreen'; 
+
+            let snake = [
+                {x: 150, y: 150},
+                {x: 140, y: 150},
+                {x: 130, y: 150},
+                {x: 120, y: 150},
+                {x: 110, y: 150}
+            ]
+
+            // Get gameCanvas element
+            var gameCanvas = document.getElementById("gameCanvas");
+
+            // Return a 2d drawing context
+            var ctx = gameCanvas.getContext("2d");
+
+            //color of border of canvas and canvas
+            ctx.strokestyle = borderColor; 
+            ctx.fillStyle = backgroundColor; 
+
+            //create a colored rectangle
+            ctx.fillRect(0, 0, gameCanvas.width, gameCanvas.height); 
+            //draw a border around rectangle
+            ctx.strokeRect(0, 0, gameCanvas.width, gameCanvas.height); 
+
+            drawSnake(); 
+
+            function drawSnake() {
+                //loop through snake parts and draw it on canvas
+                snake.forEach(drawSnakePart)
+            }
+
+            /**
+             * Draws a part of snake on canvas
+             * @param {object} snakePart - The coordinates where the snake part should be
+             */
+
+             function drawSnakePart(snakePart) {
+                //set the color of the snake part
+                ctx.fillStyle = snakeColor; 
+
+                //set border color of snake part
+                ctx.strokestyle = snakeBorderColor; 
+
+                //draw a small rectangle to represent snake part at coordinate
+                ctx.fillRect(snakePart.x, snakePart.y, 10, 10);
+                
+                //draw a border around the snake part
+                ctx.strokeRect(snakePart.x, snakePart.y, 10, 10); 
+             }
+        </script>
+    </body>
+</html>
